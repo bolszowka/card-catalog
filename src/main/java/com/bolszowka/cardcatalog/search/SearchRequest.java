@@ -5,11 +5,10 @@ import lombok.Value;
 
 @Value
 @Builder
-public class SearchResultDto {
+public class SearchRequest {
 
-    Long id;
-    String number;
-    String title;
+    Long collectionId;
+    String titleSearchTerm;
     String section;
     String type;
 }

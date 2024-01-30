@@ -1,8 +1,7 @@
 package com.bolszowka.cardcatalog.search;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -12,9 +11,8 @@ public class SearchController {
 
     private final SearchService searchService;
 
-    //TODO add search params
-    @GetMapping("/search")
-    public List<SearchResultDto> search() {
-        return searchService.search();
+    @PostMapping("/search")
+    public List<SearchResultDto> search(@RequestBody SearchRequest request) {
+        return searchService.search(request);
     }
 }

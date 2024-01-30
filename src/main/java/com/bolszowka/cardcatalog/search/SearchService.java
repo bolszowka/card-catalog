@@ -1,21 +1,21 @@
 package com.bolszowka.cardcatalog.search;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class SearchService {
 
-    //TODO temp mock
-    public List<SearchResultDto> search() {
-        return List.of(
-                SearchResultDto.builder()
-                        .id("2b0c2a87-734c-4d3f-9dc4-baa7f9e8a87a")
-                        .number("1")
-                        .title("Robert Lewandowski")
-                        .section("FC Bayern München")
-                        .build()
-        );
+    private final CardRepository cardRepository;
+
+    public List<SearchResultDto> search(SearchRequest request) {
+        //TODO temporary skipped request
+        return cardRepository.findAll().stream()
+                .map(CardEntity::toSearchResultDto)
+                .collect(Collectors.toList());
     }
 }
